@@ -1,0 +1,194 @@
+.Dishes {
+    width: 100%;
+    height: 88vh;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+}
+
+.CardsContainer {
+    width: 70%;
+    height: 80vh;
+    background-color: white;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-top: 30px;
+
+}
+
+.Card {
+    width: 300px;
+    height: 450px;
+    border-radius: 10px;
+    background-color: white;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    box-shadow: 0 0 10px #ccc;
+    margin: 20px;
+}
+
+.Price {
+    font-size: 22px;
+    position: relative;
+    top: 10px;
+
+}
+
+.CardImage {
+    width: 300px;
+    height: 240px;
+    background-color: white;
+}
+
+.CardImg {
+    width: 100%;
+    height: 100%;
+}
+
+.CardText {
+    width: 300px;
+    height: 210px;
+    padding-left: 10px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-weight: 500;
+
+}
+
+
+.Choosen {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: red;
+    box-shadow: 0 0 10px #ccc;
+    border: none;
+    float: right;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-weight: 600;
+    font-size: 21px;
+    position: relative;
+    top: -20px;
+    left: -30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.choose {
+    width: 30px;
+    height: 30px;
+}
+
+.CardName {
+    font-size: 37px;
+    font-family: 'Lobster', cursive;
+
+
+}
+
+.CardPortion {
+    width: 170px;
+    height: 40px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    position: relative;
+    top: 20px;
+    left: -4px;
+    border-radius: 10px;
+
+
+}
+
+.PortionBtn {
+    width: 70px;
+    height: 35px;
+    float: left;
+    background-color: white;
+    border: 1px solid lightgrey;
+    border-radius: 10px;
+    position: relative;
+    left: -4px;
+    font-weight: 600;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
+}
+
+.PortionBtnRed {
+    width: 70px;
+    height: 35px;
+    float: left;
+    background-color: red;
+    border: 1px solid lightgrey;
+    border-radius: 10px;
+    position: relative;
+    left: -4px;
+    color: white;
+    font-weight: 600;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
+
+}
+
+
+.CardCount {
+    width: 90px;
+    height: 40px;
+
+    border-radius: 10px;
+    position: relative;
+    top: 30px;
+    display: flex;
+    justify-content: space-around;
+    border: 1px solid lightgray;
+
+
+}
+
+.CardCountBtn {
+    width: 30px;
+    height: 40px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    color: black;
+    border-radius: 0 10px 10px 0;
+}
+
+.plus {
+    border-radius: 10px 0 0 10px;
+
+}
+
+.CardCountText {
+    width: 30px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+
+    align-items: center;
+}
+
+select {
+    width: 180px;
+    height: 50px;
+    border-radius: 10px;
+    background-color: white;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-weight: 600;
+    font-size: 17px;
+    border: none;
+    box-shadow: 0 0 10px #ccc;
+
+    padding-left: 10px;
+
+
+}
