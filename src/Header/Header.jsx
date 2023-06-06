@@ -5,7 +5,7 @@ import 'aos/dist/aos.css'
 import cart from './MainPageImage/cart.png'
 
 
-const Header = ({ OpenDishes, CartOpen, OpenDrinks, OpenSnacks }) => {
+const Header = ({ OpenDishes, CartOpen, OpenDrinks, OpenSnacks, OpenDesserts, OpenSoups, OpenSushiAndRolls }) => {
     useEffect(() => {
         AOS.init({ duration: 2000 })
     }, [])
@@ -17,9 +17,9 @@ const Header = ({ OpenDishes, CartOpen, OpenDrinks, OpenSnacks }) => {
 
                 <a data-aos='fade-left' onClick={OpenDrinks}><span>D</span>rinks</a>
                 <a data-aos='fade-right' onClick={OpenSnacks}><span>S</span>nacks</a>
-                <a data-aos='fade-left'><span>D</span>esserts</a>
-                <a data-aos='fade-right'><span>S</span>oups</a>
-                <a data-aos='fade-left'><span>S</span>ushi and Rolls</a>
+                <a data-aos='fade-left' onClick={OpenDesserts}><span>D</span>esserts</a>
+                <a data-aos='fade-right' onClick={OpenSoups}><span>S</span>oups</a>
+                <a data-aos='fade-left' onClick={OpenSushiAndRolls}><span>S</span>ushi and Rolls</a>
 
             </nav>
             <div className="CartBtn" onClick={CartOpen} data-aos='fade-left'>
