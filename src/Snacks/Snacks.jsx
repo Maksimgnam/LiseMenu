@@ -1,11 +1,11 @@
 import './Snacks.css';
 import { useState } from 'react';
-import choosen from '../Dishes/DishesImage/choosen.png';
+
 import { useEffect } from 'react';
 import AOS from 'aos'
 import 'aos/dist/aos.css'
 
-const Snacks = () => {
+const Snacks = ({ addToCart }) => {
 
     const Cards = [
         { id: 1, name: 'French fries', price: 25, img: 'data:image/jpeg;base64,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' },
@@ -24,54 +24,44 @@ const Snacks = () => {
     }, [])
 
 
-
-    const [value, setValue] = useState(Array(Cards.length).fill(0));
-    const [choose, setChoose] = useState(Array(Cards.length).fill(false));
-    const [selectedButtons, setSelectedButtons] = useState(Array(Cards.length).fill(-1));
+    const [value, setValue] = useState(Array(Cards.length).fill(1));
+    const [selectedOptions, setSelectedOptions] = useState(Array(Cards.length).fill({ size: '', quantity: 0 }));
 
 
-    const BtnClick = (index, cardIndex) => {
-        setSelectedButtons((prevSelectedButtons) => {
-            const updatedSelectedButtons = [...prevSelectedButtons];
-            updatedSelectedButtons[cardIndex] = index;
-            return updatedSelectedButtons;
+    const BtnClick = (size, cardIndex) => {
+        setSelectedOptions((prevSelectedOptions) => {
+            const updatedSelectedOptions = [...prevSelectedOptions];
+            updatedSelectedOptions[cardIndex] = { ...updatedSelectedOptions[cardIndex], size };
+            return updatedSelectedOptions;
         });
-
     };
 
-    const Add = (index) => {
-        setValue((prevValues) => {
-            const updatedValues = [...prevValues];
-            updatedValues[index] = updatedValues[index] + 1;
-            return updatedValues;
-        });
 
+
+    const Add = (index) => {
+        setValue((prevValue) => {
+            const updatedValue = [...prevValue];
+            updatedValue[index] += 1;
+            return updatedValue;
+        });
     };
 
     const Minus = (index) => {
-        setValue((prevValues) => {
-            const updatedValues = [...prevValues];
-            updatedValues[index] = updatedValues[index] - 1;
-            return updatedValues;
-        });
-
-    };
-
-
-
-    const ShowChoosen = (cardIndex) => {
-        setChoose((prevChoose) => {
-            const updatedChoose = [...prevChoose];
-            updatedChoose[cardIndex] = true;
-            return updatedChoose;
+        setValue((prevValue) => {
+            const updatedValue = [...prevValue];
+            updatedValue[index] = Math.max(updatedValue[index] - 1, 0);
+            return updatedValue;
         });
     };
+
+
+
     return (
         <div className="Snacks">
             <h3 className='Main__text'><span>S</span>nacks</h3>
             <div className="CardsContainer">
                 {Cards.map((dishcard, cardIndex) => (
-                    <div key={dishcard.id} className='Card' onClick={() => ShowChoosen(cardIndex)} data-aos='fade-right'>
+                    <div key={dishcard.id} className='Card' data-aos='fade-right'>
                         <div className="CardImage">
 
                             <img src={dishcard.img} alt="" className='CardImg' />
@@ -81,49 +71,77 @@ const Snacks = () => {
 
 
                             <p className='Price'>Price: <span>{dishcard.price}$</span></p>
-
-
-
                             <div className="CardPortion PortionDrinks">
                                 <button
-                                    className={selectedButtons[cardIndex] === 0 ? 'PortionBtnRed' : 'PortionBtn'}
-                                    onClick={() => BtnClick(0, cardIndex)}
+                                    className={selectedOptions[cardIndex]?.size === 'small' ? 'PortionBtnRed' : 'PortionBtn'}
+                                    onClick={() => BtnClick('small', cardIndex)}
                                 >
                                     Small
                                 </button>
                                 <button
-                                    className={selectedButtons[cardIndex] === 1 ? 'PortionBtnRed' : 'PortionBtn'}
-                                    onClick={() => BtnClick(1, cardIndex)}
+                                    className={selectedOptions[cardIndex]?.size === 'standard' ? 'PortionBtnRed' : 'PortionBtn'}
+                                    onClick={() => BtnClick('standard', cardIndex)}
                                 >
-                                    Standart
+                                    Standard
                                 </button>
                                 <button
-                                    className={selectedButtons[cardIndex] === 2 ? 'PortionBtnRed' : 'PortionBtn'}
-                                    onClick={() => BtnClick(2, cardIndex)}
+                                    className={selectedOptions[cardIndex]?.size === 'bigger' ? 'PortionBtnRed' : 'PortionBtn'}
+                                    onClick={() => BtnClick('bigger', cardIndex)}
                                 >
                                     Bigger
                                 </button>
                             </div>
+
+
                             <div className="CardCount">
-                                <div className="CardCountBtn plus" onClick={() => Add(cardIndex)}><span>+</span></div>
-                                <div className="CardCountText">{value[cardIndex]}</div>
-                                <div className="CardCountBtn" onClick={() => Minus(cardIndex)}><span>-</span></div>
+                                <div
+                                    className='CardCountBtn'
+                                    onClick={() => Minus(cardIndex)}
+                                >
+                                    -
+                                </div>
+                                <input
+                                    type="text"
+                                    className="CardCountText"
+                                    value={value[cardIndex]}
+                                    onChange={(e) => setValue((prevValue) => {
+                                        const updatedValue = [...prevValue];
+                                        updatedValue[cardIndex] = parseInt(e.target.value) || 0;
+                                        return updatedValue;
+                                    })}
+                                />
+                                <div
+                                    className='CardCountBtn plus'
+                                    onClick={() => Add(cardIndex)}
+                                >
+                                    +
+                                </div>
                             </div>
-                            {
-                                choose[cardIndex] && (
-                                    <button className='Choosen  ChoosenDrinks'>
-                                        <img className='choose' src={choosen} alt="" />
 
-                                    </button>
 
-                                )
-                            }
 
                         </div>
+                        <button
+                            className='add'
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                addToCart(dishcard, selectedOptions[cardIndex], value[cardIndex]);
+                            }}
+                        >
+                            <span>A</span>dd
+                        </button>
+
+
+
+
+
+
+
+
                     </div>
                 ))}
             </div>
-        </div>
+        </div >
     )
 }
 export default Snacks;

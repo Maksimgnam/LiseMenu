@@ -22,7 +22,7 @@ const DishCards = [
 
 const Dishes = ({ addToCart }) => {
     const [filter, setFilter] = useState('');
-    const [value, setValue] = useState(Array(DishCards.length).fill(0));
+    const [value, setValue] = useState(Array(DishCards.length).fill(1));
     const [selectedOptions, setSelectedOptions] = useState(Array(DishCards.length).fill({ size: '', quantity: 0 }));
 
 

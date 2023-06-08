@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import choosen from '../Dishes/DishesImage/choosen.png';
 import AOS from 'aos'
 import 'aos/dist/aos.css'
-const Soups = () => {
+const Soups = ({ addToCart }) => {
     const Cards = [
         { id: 1, name: 'Chicken Enchilada', price: 17, img: 'https://www.eatingwell.com/thmb/QiiPNpbhdZUieiex5RXCx9Q2ils=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/6886647-b58f1db1fd94454fa2033d95df8446fe.jpg' },
         { id: 2, name: 'Beer-Cheese', price: 25, img: 'https://www.eatingwell.com/thmb/71sqN3n1GzFvRA7_FCZ4UXUYrF0=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/beer-cheese-soup-1x1-80-1-782d15e872084da3b8255ce75086449e.jpg' },
@@ -23,46 +23,42 @@ const Soups = () => {
         AOS.init({ duration: 2000 })
     }, [])
 
+    const [value, setValue] = useState(Array(Cards.length).fill(1));
+    const [selectedOptions, setSelectedOptions] = useState(Array(Cards.length).fill({ size: '', quantity: 0 }));
 
 
-    const [value, setValue] = useState(Array(Cards.length).fill(0));
-    const [choose, setChoose] = useState(Array(Cards.length).fill(false));
-    const [selectedButtons, setSelectedButtons] = useState(Array(Cards.length).fill(-1));
-
-
-    const BtnClick = (index, cardIndex) => {
-        setSelectedButtons((prevSelectedButtons) => {
-            const updatedSelectedButtons = [...prevSelectedButtons];
-            updatedSelectedButtons[cardIndex] = index;
-            return updatedSelectedButtons;
+    const BtnClick = (size, cardIndex) => {
+        setSelectedOptions((prevSelectedOptions) => {
+            const updatedSelectedOptions = [...prevSelectedOptions];
+            updatedSelectedOptions[cardIndex] = { ...updatedSelectedOptions[cardIndex], size };
+            return updatedSelectedOptions;
         });
-
     };
 
-    const Add = (index) => {
-        setValue((prevValues) => {
-            const updatedValues = [...prevValues];
-            updatedValues[index] = updatedValues[index] + 1;
-            return updatedValues;
-        });
 
+
+    const Add = (index) => {
+        setValue((prevValue) => {
+            const updatedValue = [...prevValue];
+            updatedValue[index] += 1;
+            return updatedValue;
+        });
     };
 
     const Minus = (index) => {
-        setValue((prevValues) => {
-            const updatedValues = [...prevValues];
-            updatedValues[index] = updatedValues[index] - 1;
-            return updatedValues;
+        setValue((prevValue) => {
+            const updatedValue = [...prevValue];
+            updatedValue[index] = Math.max(updatedValue[index] - 1, 0);
+            return updatedValue;
         });
+    };
 
-    };
-    const ShowChoosen = (cardIndex) => {
-        setChoose((prevChoose) => {
-            const updatedChoose = [...prevChoose];
-            updatedChoose[cardIndex] = true;
-            return updatedChoose;
-        });
-    };
+
+
+
+
+
+
 
 
 
@@ -72,7 +68,7 @@ const Soups = () => {
             <h3 className='Main__text'><span>S</span>oups</h3>
             <div className="CardsContainer">
                 {Cards.map((dishcard, cardIndex) => (
-                    <div key={dishcard.id} className='Card' onClick={() => ShowChoosen(cardIndex)} data-aos='fade-right'>
+                    <div key={dishcard.id} className='Card' data-aos='fade-right'>
                         <div className="CardImage">
 
                             <img src={dishcard.img} alt="" className='CardImg' />
@@ -85,41 +81,73 @@ const Soups = () => {
 
 
 
-                            <div className="CardPortion">
 
+                            <div className="CardPortion">
                                 <button
-                                    className={selectedButtons[cardIndex] === 0 ? 'PortionBtnRed' : 'PortionBtn'}
-                                    onClick={() => BtnClick(0, cardIndex)}
+                                    className={selectedOptions[cardIndex]?.size === 'small' ? 'PortionBtnRed' : 'PortionBtn'}
+                                    onClick={() => BtnClick('small', cardIndex)}
                                 >
                                     Small
                                 </button>
                                 <button
-                                    className={selectedButtons[cardIndex] === 1 ? 'PortionBtnRed' : 'PortionBtn'}
-                                    onClick={() => BtnClick(1, cardIndex)}
+                                    className={selectedOptions[cardIndex]?.size === 'standard' ? 'PortionBtnRed' : 'PortionBtn'}
+                                    onClick={() => BtnClick('standard', cardIndex)}
                                 >
-                                    Standart
+                                    Standard
+                                </button>
+                                <button
+                                    className={selectedOptions[cardIndex]?.size === 'bigger' ? 'PortionBtnRed' : 'PortionBtn'}
+                                    onClick={() => BtnClick('bigger', cardIndex)}
+                                >
+                                    Bigger
                                 </button>
                             </div>
+
+
                             <div className="CardCount">
-                                <div className="CardCountBtn plus" onClick={() => Add(cardIndex)}><span>+</span></div>
-                                <div className="CardCountText">{value[cardIndex]}</div>
-                                <div className="CardCountBtn" onClick={() => Minus(cardIndex)}><span>-</span></div>
+                                <div
+                                    className='CardCountBtn'
+                                    onClick={() => Minus(cardIndex)}
+                                >
+                                    -
+                                </div>
+                                <input
+                                    type="text"
+                                    className="CardCountText"
+                                    value={value[cardIndex]}
+                                    onChange={(e) => setValue((prevValue) => {
+                                        const updatedValue = [...prevValue];
+                                        updatedValue[cardIndex] = parseInt(e.target.value) || 0;
+                                        return updatedValue;
+                                    })}
+                                />
+                                <div
+                                    className='CardCountBtn plus'
+                                    onClick={() => Add(cardIndex)}
+                                >
+                                    +
+                                </div>
                             </div>
-                            {
-                                choose[cardIndex] && (
-                                    <button className='Choosen  ChoosenDrinks'>
-                                        <img className='choose' src={choosen} alt="" />
 
-                                    </button>
 
-                                )
-                            }
 
                         </div>
+                        <button
+                            className='add'
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                addToCart(dishcard, selectedOptions[cardIndex], value[cardIndex]);
+                            }}
+                        >
+                            <span>A</span>dd
+                        </button>
+
+
+
                     </div>
                 ))}
             </div>
-        </div>
+        </div >
 
     )
 }

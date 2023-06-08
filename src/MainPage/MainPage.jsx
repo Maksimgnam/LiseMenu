@@ -118,6 +118,7 @@ const MainPage = ({ }) => {
         });
 
     };
+    let TotalPrice = cartItems.reduce((acc, current) => acc + current.dish.price, 0)
 
     return (
         <div className='MainPage'>
@@ -136,28 +137,28 @@ const MainPage = ({ }) => {
 
                 {
                     openDrinks && (
-                        <Drinks />
+                        <Drinks addToCart={addToCart} />
                     )
                 }
                 {
                     openSnacks && (
-                        <Snacks />
+                        <Snacks addToCart={addToCart} />
 
                     )
                 }
                 {
                     openDesserts && (
-                        <Desserts />
+                        <Desserts addToCart={addToCart} />
                     )
                 }
                 {
                     openSoups && (
-                        <Soups />
+                        <Soups addToCart={addToCart} />
                     )
                 }
                 {
                     openSushiAndRolls && (
-                        <SushiAndRolls />
+                        <SushiAndRolls addToCart={addToCart} />
                     )
                 }
 
@@ -197,9 +198,9 @@ const MainPage = ({ }) => {
                                     <img src={item.dish.img} alt="" className="Image" />
                                     <div className="CartTexts">
                                         <div className="CartName">{item.dish.name}</div>
-                                        <div className="CartPrice">Price: {item.dish.price}$</div>
+                                        <div className="CartPrice">Price: <span>{item.dish.price}$</span></div>
                                         <div className="CartSize">Size: <span>{item.dish.size} </span> </div>
-                                        <div className="CartSize">Size: <span>{item.count} </span> </div>
+                                        <div className="CartSize">Number: <span>{item.count} </span> </div>
 
 
 
@@ -213,6 +214,9 @@ const MainPage = ({ }) => {
                             ))}
 
                         </div>
+
+                        <p className='TotalSum'>Total: <span>{TotalPrice}$</span></p>
+                        <button className='Order'>Order</button>
                     </div>
 
 
