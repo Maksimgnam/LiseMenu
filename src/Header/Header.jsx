@@ -5,13 +5,16 @@ import 'aos/dist/aos.css'
 import cart from './MainPageImage/cart.png'
 
 
-const Header = ({ OpenDishes, CartOpen, OpenDrinks, OpenSnacks, OpenDesserts, OpenSoups, OpenSushiAndRolls }) => {
+
+
+const Header = ({ OpenDishes, CartOpen, OpenDrinks, OpenSnacks, OpenDesserts, OpenSoups, OpenSushiAndRolls, OpenMainPage, OpenCheck }) => {
     useEffect(() => {
         AOS.init({ duration: 2000 })
     }, [])
+
     return (
         <div className='Header'>
-            <div className="Logo" data-aos='fade-right'><span>L</span>iseMenu</div>
+            <div className="Logo" data-aos='fade-right' onClick={OpenMainPage}><span>L</span>iseMenu</div>
             <nav className="navbar">
                 <a data-aos='fade-left' onClick={OpenDishes}><span>D</span>ishes</a>
 
@@ -22,9 +25,14 @@ const Header = ({ OpenDishes, CartOpen, OpenDrinks, OpenSnacks, OpenDesserts, Op
                 <a data-aos='fade-left' onClick={OpenSushiAndRolls}><span>S</span>ushi and Rolls</a>
 
             </nav>
+
             <div className="CartBtn" onClick={CartOpen} data-aos='fade-left'>
                 <img className='CartImage' src={cart} alt="" />
             </div>
+            <button className='Check' onClick={OpenCheck}>Check</button>
+
+
+
 
         </div>
     )

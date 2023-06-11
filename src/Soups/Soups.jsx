@@ -1,7 +1,6 @@
 import './Soups.css';
 import { useState } from 'react';
 import { useEffect } from 'react';
-import choosen from '../Dishes/DishesImage/choosen.png';
 import AOS from 'aos'
 import 'aos/dist/aos.css'
 const Soups = ({ addToCart }) => {
@@ -24,16 +23,22 @@ const Soups = ({ addToCart }) => {
     }, [])
 
     const [value, setValue] = useState(Array(Cards.length).fill(1));
-    const [selectedOptions, setSelectedOptions] = useState(Array(Cards.length).fill({ size: '', quantity: 0 }));
-
+    const [selectedOptions, setSelectedOptions] = useState(Array(Cards.length).fill({ size: '', priceModifier: 0, countModifier: 0 }));
 
     const BtnClick = (size, cardIndex) => {
         setSelectedOptions((prevSelectedOptions) => {
             const updatedSelectedOptions = [...prevSelectedOptions];
-            updatedSelectedOptions[cardIndex] = { ...updatedSelectedOptions[cardIndex], size };
+            let priceModifier = 0;
+            if (size === 'small') {
+                priceModifier = -6;
+            } else if (size === 'bigger') {
+                priceModifier = 14;
+            }
+            updatedSelectedOptions[cardIndex] = { ...updatedSelectedOptions[cardIndex], size, priceModifier };
             return updatedSelectedOptions;
         });
     };
+
 
 
 
@@ -52,6 +57,9 @@ const Soups = ({ addToCart }) => {
             return updatedValue;
         });
     };
+
+
+
 
 
 
@@ -82,7 +90,7 @@ const Soups = ({ addToCart }) => {
 
 
 
-                            <div className="CardPortion">
+                            <div className="CardPortion PortionDrinks">
                                 <button
                                     className={selectedOptions[cardIndex]?.size === 'small' ? 'PortionBtnRed' : 'PortionBtn'}
                                     onClick={() => BtnClick('small', cardIndex)}

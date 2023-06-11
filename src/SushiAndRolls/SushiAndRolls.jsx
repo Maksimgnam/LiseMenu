@@ -24,16 +24,23 @@ const SushiAndRolls = ({ addToCart }) => {
         AOS.init({ duration: 2000 })
     }, [])
     const [value, setValue] = useState(Array(Cards.length).fill(1));
-    const [selectedOptions, setSelectedOptions] = useState(Array(Cards.length).fill({ size: '', quantity: 0 }));
+    const [selectedOptions, setSelectedOptions] = useState(Array(Cards.length).fill({ size: '', priceModifier: 0, countModifier: 0 }));
 
 
     const BtnClick = (size, cardIndex) => {
         setSelectedOptions((prevSelectedOptions) => {
             const updatedSelectedOptions = [...prevSelectedOptions];
-            updatedSelectedOptions[cardIndex] = { ...updatedSelectedOptions[cardIndex], size };
+            let priceModifier = 0;
+            if (size === 'small') {
+                priceModifier = -7;
+            } else if (size === 'bigger') {
+                priceModifier = 20;
+            }
+            updatedSelectedOptions[cardIndex] = { ...updatedSelectedOptions[cardIndex], size, priceModifier };
             return updatedSelectedOptions;
         });
     };
+
 
 
 

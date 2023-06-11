@@ -1,0 +1,67 @@
+.CheckOrderNumber {
+    width: 100%;
+    height: 100vh;
+    background-color: white;
+
+}
+
+.CheckOrderNumberhead {
+    width: 100%;
+    height: 10vh;
+    position: relative;
+    top: 20px;
+
+
+}
+
+.CheckOrderNumberMain {
+    width: 100%;
+    height: 93vh;
+    position: relative;
+    top: 22px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+
+
+}
+
+.BackBtn {
+    width: 70px;
+    height: 40px;
+    background-color: red;
+    border: none;
+    border-radius: 10px;
+
+    position: relative;
+    top: 40px;
+    left: 30px;
+    color: white;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-weight: 500;
+    font-size: 17px;
+
+}
+
+.CheckOrderNumberInput {
+    text-align: center;
+    width: 50%;
+    height: 50px;
+    border-radius: 10px;
+    border: none;
+    box-shadow: 0 0 10px #ccc;
+    padding-left: 10px;
+    color: red;
+    font-size: 23px;
+    font-weight: 600;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    letter-spacing: 2px;
+
+}
+
+
+
+.CheckOrderNumberInput::placeholder {
+    color: red;
+}

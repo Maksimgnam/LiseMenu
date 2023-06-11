@@ -31,6 +31,8 @@ span {
     display: flex;
     justify-content: space-around;
     align-items: center;
+    position: relative;
+    left: 20px;
 
 }
 
@@ -55,24 +57,57 @@ a:hover {
 }
 
 .CartBtn {
-    width: 50px;
-    height: 50px;
+    width: 70px;
+    height: 70px;
     background-color: white;
     float: right;
-    position: relative;
-    left: -40px;
+    position: fixed;
+
+    left: 1370px;
+
 
     box-shadow: 0 0 10px #ccc;
     border-radius: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
+    top: 600px;
+    transition: 0.7s;
+
+
+}
+
+.CartBtn:hover {
+    box-shadow: 0 0 20px #ccc;
 
 }
 
 .CartImage {
-    width: 30px;
-    height: 30px;
+    width: 45px;
+    height: 45px;
     position: relative;
     left: -3px;
+}
+
+.Check {
+    width: 150px;
+    height: 40px;
+    background-color: white;
+    border: 2px solid red;
+    background-color: white;
+    border-radius: 10px;
+    color: red;
+    font-size: 20px;
+    font-weight: 600;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    transition: 0.6s;
+    position: relative;
+    left: -30px;
+
+
+}
+
+.Check:hover {
+    background-color: red;
+    color: white;
 }

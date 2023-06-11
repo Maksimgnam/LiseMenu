@@ -25,16 +25,23 @@ const Snacks = ({ addToCart }) => {
 
 
     const [value, setValue] = useState(Array(Cards.length).fill(1));
-    const [selectedOptions, setSelectedOptions] = useState(Array(Cards.length).fill({ size: '', quantity: 0 }));
+    const [selectedOptions, setSelectedOptions] = useState(Array(Cards.length).fill({ size: '', priceModifier: 0, countModifier: 0 }));
 
 
     const BtnClick = (size, cardIndex) => {
         setSelectedOptions((prevSelectedOptions) => {
             const updatedSelectedOptions = [...prevSelectedOptions];
-            updatedSelectedOptions[cardIndex] = { ...updatedSelectedOptions[cardIndex], size };
+            let priceModifier = 0;
+            if (size === 'small') {
+                priceModifier = -6;
+            } else if (size === 'bigger') {
+                priceModifier = 7;
+            }
+            updatedSelectedOptions[cardIndex] = { ...updatedSelectedOptions[cardIndex], size, priceModifier };
             return updatedSelectedOptions;
         });
     };
+
 
 
 
