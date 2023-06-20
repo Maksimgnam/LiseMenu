@@ -13,7 +13,7 @@ const CheckOrderNumber = ({ CloseCheck, orderNumber, cartItems }) => {
 
 
         if (orderNumberInput === orderNumber) {
-            // Mocked order details
+
             const order = {
                 orderNumber: orderNumberInput,
                 customerName: 'John Doe',
