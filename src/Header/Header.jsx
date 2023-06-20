@@ -2,7 +2,7 @@ import './Header.css';
 import { useEffect } from 'react';
 import AOS from 'aos'
 import 'aos/dist/aos.css'
-import cart from './MainPageImage/cart.png'
+// import cart from './MainPageImage/cart.png'
 
 
 
@@ -27,7 +27,7 @@ const Header = ({ OpenDishes, CartOpen, OpenDrinks, OpenSnacks, OpenDesserts, Op
             </nav>
 
             <div className="CartBtn" onClick={CartOpen} data-aos='fade-left'>
-                <img className='CartImage' src={cart} alt="" />
+
             </div>
             <button className='Check' onClick={OpenCheck}>Check</button>
 

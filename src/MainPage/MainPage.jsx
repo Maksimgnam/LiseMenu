@@ -13,6 +13,9 @@ import Soups from '../Soups/Soups';
 import SushiAndRolls from '../SushiAndRolls/SushiAndRolls';
 import CheckOrderNumber from '../CheckOrderNumber/CheckOrderNumber';
 
+import emailjs from 'emailjs-com';
+
+
 
 
 const MainPage = () => {
@@ -29,7 +32,9 @@ const MainPage = () => {
     const [openPayment, setOpenPayment] = useState(false)
     const [openHeader, setOpenHeader] = useState(true)
     const [OrderNumber, setOrderNumber] = useState('');
-    const [openCheckOrder, setOpenCheckOrder] = useState(false)
+    const [openCheckOrder, setOpenCheckOrder] = useState(false);
+    const [orderNumberInput, setOrderNumberInput] = useState('');
+
 
 
 
@@ -125,6 +130,7 @@ const MainPage = () => {
         const OrderNumber = Array.from({ length: 1 }, () => Math.floor(Math.random() * 10000000));
 
         setOrderNumber(OrderNumber)
+
         setOpenPayment(true)
         setOpenDish(false)
         setOpenMain(false)
@@ -160,6 +166,35 @@ const MainPage = () => {
         setOpenHeader(true)
 
     }
+    const handleOrderNumberChange = (event) => {
+        setOrderNumberInput(event.target.value);
+    };
+
+    const SendNumber = () => {
+        const items = cartItems.map((item, index) => ({
+            index: index + 1,
+            name: item.dish.name,
+            price: item.dish.price,
+            size: item.dish.size,
+            count: item.count,
+        }));
+        const itemsString = items
+            .map((item) => `${item.index}. ${item.name} - $${item.price} - Size: ${item.size} - Count: ${item.count}`)
+            .join('\n');
+        const templateParams = {
+            OrderNumber,
+            items: itemsString,
+            TotalPrice
+        };
+
+        emailjs.send('service_85i8t5h', 'template_4r8dw1k', templateParams, 'XIKKVFGQTwbBsdkZH')
+            .then((response) => {
+                console.log('Email sent successfully!', response.text);
+            })
+            .catch((error) => {
+                console.error('Error sending email:', error);
+            });
+    }
 
     const [cartItems, setCartItems] = useState([]);
     const addToCart = (dish, options, count) => {
@@ -182,7 +217,11 @@ const MainPage = () => {
         });
 
     };
-    let TotalPrice = cartItems.reduce((acc, current) => acc + current.dish.price, 0)
+    let TotalPrice = cartItems.reduce((acc, current) => acc + current.dish.price, 0);
+
+
+
+
 
     return (
         <div className='MainPage'>
@@ -250,7 +289,8 @@ const MainPage = () => {
                 }
                 {
                     openCheckOrder && (
-                        <CheckOrderNumber CloseCheck={CloseCheck} />
+                        <CheckOrderNumber CloseCheck={CloseCheck} orderNumber={OrderNumber} cartItems={cartItems} />
+
                     )
                 }
                 {
@@ -258,7 +298,7 @@ const MainPage = () => {
                         <div className="PaymentContainer">
                             <button className="ClosePayment" onClick={ClosePayment}>-</button>
                             <div className='OrderNumber'> <p className='OrderNumberP'>Order number</p> <span>{OrderNumber}</span></div>
-                            <div className='OrderTextContainer'>
+                            <form className='OrderTextContainer' >
                                 {cartItems.map((item, index) => (
                                     <div key={index}  >
 
@@ -282,10 +322,10 @@ const MainPage = () => {
 
                                     </div>
                                 ))}
-                            </div>
+                            </form>
                             <div className="PaymentDownContainer">
                                 <p className='PaymentTotalPrice'> Total price: <span>{TotalPrice}$</span></p>
-                                <button className='PayBtn'>Pay</button>
+                                <button className='PayBtn' onClick={SendNumber}>Pay</button>
                             </div>
                         </div>
                     )
@@ -337,7 +377,7 @@ const MainPage = () => {
                 )
             }
 
-        </div>
+        </div >
     )
 }
 export default MainPage
