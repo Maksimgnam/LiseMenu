@@ -14,6 +14,7 @@ import SushiAndRolls from '../SushiAndRolls/SushiAndRolls';
 import CheckOrderNumber from '../CheckOrderNumber/CheckOrderNumber';
 
 import emailjs from 'emailjs-com';
+import Menubar from '../Menubar/Menubar';
 
 
 
@@ -34,6 +35,7 @@ const MainPage = () => {
     const [OrderNumber, setOrderNumber] = useState('');
     const [openCheckOrder, setOpenCheckOrder] = useState(false);
     const [orderNumberInput, setOrderNumberInput] = useState('');
+    const [openMenuBar, setOpenMenuBar] = useState(false)
 
 
 
@@ -58,6 +60,7 @@ const MainPage = () => {
 
         setOpenDrinks(false)
         setOpenDish(false)
+        setOpenMenuBar(false)
 
 
 
@@ -70,6 +73,7 @@ const MainPage = () => {
         setOpenDesserts(false)
         setOpenSoups(false)
         setOpenSushiAndRolls(false)
+        setOpenMenuBar(false)
 
 
     }
@@ -81,6 +85,7 @@ const MainPage = () => {
         setOpenDesserts(false)
         setOpenSoups(false)
         setOpenSushiAndRolls(false)
+        setOpenMenuBar(false)
 
 
     }
@@ -93,6 +98,7 @@ const MainPage = () => {
         setOpenDesserts(false)
         setOpenSoups(false)
         setOpenSushiAndRolls(false)
+        setOpenMenuBar(false)
 
     }
     const OpenDesserts = () => {
@@ -104,6 +110,7 @@ const MainPage = () => {
         setOpenMain(false)
         setOpenSoups(false)
         setOpenSushiAndRolls(false)
+        setOpenMenuBar(false)
 
     }
     const OpenSoups = () => {
@@ -115,6 +122,7 @@ const MainPage = () => {
         setOpenDish(false)
         setOpenMain(false)
         setOpenSushiAndRolls(false)
+        setOpenMenuBar(false)
     }
     const OpenSushiAndRolls = () => {
         setOpenSushiAndRolls(true)
@@ -125,6 +133,7 @@ const MainPage = () => {
         setOpenDrinks(false)
         setOpenDish(false)
         setOpenMain(false)
+        setOpenMenuBar(false)
     }
     const OpenPayment = () => {
         const OrderNumber = Array.from({ length: 1 }, () => Math.floor(Math.random() * 10000000));
@@ -141,12 +150,14 @@ const MainPage = () => {
         setOpenSushiAndRolls(false)
         setOpenCart(false)
         setOpenHeader(false)
+        setOpenMenuBar(false)
 
     }
     const ClosePayment = () => {
         setOpenPayment(false)
         setOpenHeader(true)
         setOpenMain(true)
+        setOpenMenuBar(false)
     }
     const OpenCheck = () => {
         setOpenCheckOrder(true)
@@ -159,11 +170,29 @@ const MainPage = () => {
         setOpenDrinks(false)
         setOpenDish(false)
         setOpenMain(false)
+        setOpenMenuBar(false)
     }
     const CloseCheck = () => {
         setOpenCheckOrder(false)
         setOpenMain(true)
         setOpenHeader(true)
+        setOpenMenuBar(false)
+
+    }
+    const OpenMenubar = () => {
+        setOpenMenuBar(true)
+        setOpenMain(false)
+
+        setOpenPayment(false)
+        setOpenDish(false)
+
+        setOpenDrinks(false)
+        setOpenSnacks(false)
+        setOpenDesserts(false)
+        setOpenSoups(false)
+        setOpenSushiAndRolls(false)
+        setOpenCart(false)
+
 
     }
     const handleOrderNumberChange = (event) => {
@@ -224,10 +253,11 @@ const MainPage = () => {
 
 
     return (
+
         <div className='MainPage'>
             {
                 openHeader && (
-                    <Header OpenDishes={OpenDishes} CartOpen={CartOpen} OpenDrinks={OpenDrinks} OpenSnacks={OpenSnacks} OpenDesserts={OpenDesserts} OpenSoups={OpenSoups} OpenSushiAndRolls={OpenSushiAndRolls} OpenMainPage={OpenMainPage} OpenCheck={OpenCheck} />
+                    <Header OpenDishes={OpenDishes} CartOpen={CartOpen} OpenDrinks={OpenDrinks} OpenSnacks={OpenSnacks} OpenDesserts={OpenDesserts} OpenSoups={OpenSoups} OpenSushiAndRolls={OpenSushiAndRolls} OpenMainPage={OpenMainPage} OpenCheck={OpenCheck} OpenMenubar={OpenMenubar} />
 
 
                 )
@@ -279,7 +309,7 @@ const MainPage = () => {
                         <div className='MainPageText'>
                             <h3 className='MainPageH3' data-aos='fade-left'><span>L</span>iseMenu</h3>
                             <h4 className='MainPageH4' data-aos='fade-right'><span>M</span>enu for those who like delicious food</h4>
-                            <button className='OrderBtn' data-aos='fade-up' onClick={OpenDishes}>Order now</button>
+                            <button className='OrderBtn' onClick={OpenDishes}>Order now</button>
 
 
 
@@ -298,7 +328,7 @@ const MainPage = () => {
                         <div className="PaymentContainer">
                             <button className="ClosePayment" onClick={ClosePayment}>-</button>
                             <div className='OrderNumber'> <p className='OrderNumberP'>Order number</p> <span>{OrderNumber}</span></div>
-                            <form className='OrderTextContainer' >
+                            <div className='OrderTextContainer' >
                                 {cartItems.map((item, index) => (
                                     <div key={index}  >
 
@@ -322,7 +352,7 @@ const MainPage = () => {
 
                                     </div>
                                 ))}
-                            </form>
+                            </div>
                             <div className="PaymentDownContainer">
                                 <p className='PaymentTotalPrice'> Total price: <span>{TotalPrice}$</span></p>
                                 <button className='PayBtn' onClick={SendNumber}>Pay</button>
@@ -330,6 +360,13 @@ const MainPage = () => {
                         </div>
                     )
                 }
+                {
+                    openMenuBar && (
+                        <Menubar OpenDishes={OpenDishes} CartOpen={CartOpen} OpenDrinks={OpenDrinks} OpenSnacks={OpenSnacks} OpenDesserts={OpenDesserts} OpenSoups={OpenSoups} OpenSushiAndRolls={OpenSushiAndRolls} />
+
+                    )
+                }
+
 
 
 
@@ -376,6 +413,8 @@ const MainPage = () => {
 
                 )
             }
+
+
 
         </div >
     )

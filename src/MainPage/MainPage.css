@@ -211,13 +211,11 @@
 .PaymentContainer {
     width: 100%;
     height: 105vh;
-    box-shadow: 0 0 10px #ccc;
-    border-radius: 10px;
-    position: relative;
-    top: 20px;
+
+
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
 }
 
@@ -242,6 +240,8 @@
 .OrderTextContainer {
     width: 50%;
     height: 500px;
+    display: flex;
+    justify-content: center;
     display: flex;
 
     flex-direction: column;
@@ -350,5 +350,79 @@
     background-color: white;
     border: 2px solid red;
     color: red;
+
+}
+
+@media (max-width: 800px) {
+    .MainPageH3 {
+        font-size: 70px;
+    }
+
+    .MainPageH4 {
+        font-size: 50px;
+    }
+
+    .OrderBtn {
+        width: 270px;
+        height: 60px;
+    }
+
+    .Cart {
+        width: 100%;
+        position: relative;
+        left: 0;
+        top: -740px;
+        border-radius: 0;
+    }
+
+    .PaymentContainer {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .ClosePayment {
+        position: relative;
+        left: 0;
+        top: 0;
+    }
+
+    .OrderTextContainer {
+        width: 100%;
+        display: flex;
+
+        overflow-x: hidden;
+    }
+
+
+    .OrderText {
+        width: 90%;
+        position: relative;
+        left: 14px;
+
+    }
+
+    .PaymentDownContainer {
+        width: 82%;
+
+        flex-direction: column;
+        display: flex;
+        align-items: center;
+    }
+
+    .PaymentTotalPrice {
+        position: relative;
+        left: -20px;
+    }
+
+    .PayBtn {
+        width: 90%;
+        height: 80px;
+        position: relative;
+        top: 20px;
+        left: -20px;
+    }
 
 }
