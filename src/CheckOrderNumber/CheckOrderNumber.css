@@ -116,3 +116,33 @@
     font-size: 30px;
     color: red;
 }
+
+@media (max-width: 800px) {
+    .InputContainer {
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+
+    }
+
+    .CheckOrderNumberInput {
+        width: 70%;
+        font-size: 20px;
+    }
+
+    .CheckOrderButton {
+        font-size: 20px;
+    }
+
+    .OrderCardContainer {
+        width: 100%;
+
+    }
+
+    .OrderCard {
+        width: 90%;
+    }
+
+
+
+}

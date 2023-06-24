@@ -207,12 +207,12 @@ const MainPage = () => {
             size: item.dish.size,
             count: item.count,
         }));
-        const itemsString = items
+        const itemsName = items
             .map((item) => `${item.index}. ${item.name} - $${item.price} - Size: ${item.size} - Count: ${item.count}`)
             .join('\n');
         const templateParams = {
             OrderNumber,
-            items: itemsString,
+            items: itemsName,
             TotalPrice
         };
 
@@ -405,9 +405,13 @@ const MainPage = () => {
                             ))}
 
                         </div>
+                        <div className="CartDownContainer">
 
-                        <p className='TotalSum' data-aos='fade-left' >Total: <span >{TotalPrice}$</span></p>
-                        <button className='Order' onClick={OpenPayment}>Order</button>
+
+
+                            <p className='TotalSum' data-aos='fade-left' >Total: <span >{TotalPrice}$</span></p>
+                            <button className='Order' onClick={OpenPayment}>Order</button>
+                        </div>
                     </div>
 
 
