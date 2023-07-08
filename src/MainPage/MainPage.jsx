@@ -44,9 +44,11 @@ const MainPage = () => {
 
     const CartOpen = () => {
         setOpenCart(true)
+
     }
     const CartClose = () => {
         setOpenCart(false)
+
     }
     useEffect(() => {
         AOS.init({ duration: 2000 })
@@ -216,7 +218,7 @@ const MainPage = () => {
             TotalPrice
         };
 
-        emailjs.send('service_85i8t5h', 'template_4r8dw1k', templateParams, 'XIKKVFGQTwbBsdkZH')
+        emailjs.send('service_ik8ujp7', 'template_e1mg31t', templateParams, 'XIKKVFGQTwbBsdkZH')
             .then((response) => {
                 console.log('Email sent successfully!', response.text);
             })
@@ -326,7 +328,11 @@ const MainPage = () => {
                 {
                     openPayment && (
                         <div className="PaymentContainer">
-                            <button className="ClosePayment" onClick={ClosePayment}>-</button>
+                            <div className="PaymentHead">
+                                <button className="ClosePayment" onClick={ClosePayment}>-</button>
+
+                            </div>
+
                             <div className='OrderNumber'> <p className='OrderNumberP'>Order number</p> <span>{OrderNumber}</span></div>
                             <div className='OrderTextContainer' >
                                 {cartItems.map((item, index) => (
