@@ -397,7 +397,7 @@ const MainPage = () => {
                                         <div className="CartName">{item.dish.name}</div>
                                         <div className="CartPrice">Price: <span>{item.dish.price}$</span></div>
                                         <div className="CartSize">Size: <span>{item.dish.size} </span> </div>
-                                        <div className="CartSize">Number: <span>{item.count} </span> </div>
+                                        <div className="CartSize">Amount: <span>{item.count} </span> </div>
 
 
 

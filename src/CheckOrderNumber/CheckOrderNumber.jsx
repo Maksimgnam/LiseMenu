@@ -77,7 +77,7 @@ const CheckOrderNumber = ({ CloseCheck, orderNumber, cartItems }) => {
                                             Size: <span>{item.dish.size}</span>
                                         </div>
                                         <div className="PaymentText">
-                                            Number: <span>{item.count}</span>
+                                            Amount: <span>{item.count}</span>
                                         </div>
                                     </div>
                                 </div>
