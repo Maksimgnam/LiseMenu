@@ -253,14 +253,8 @@
 .OrderTextContainer {
     width: 50%;
     height: 500px;
-    display: flex;
-    justify-content: center;
-    display: flex;
-
-    flex-direction: column;
-    overflow-y: scroll;
-    position: relative;
     top: 10px;
+    overflow-y: scroll;
 
 }
 
